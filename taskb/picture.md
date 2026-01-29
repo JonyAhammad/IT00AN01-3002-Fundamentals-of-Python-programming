@@ -1,0 +1,1 @@
+![task_b picture](image.png)
