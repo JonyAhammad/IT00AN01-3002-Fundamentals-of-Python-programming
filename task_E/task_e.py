@@ -8,9 +8,13 @@ WEEKDAYS_FI = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday
 WEEKDAYS_FI = ["Maanantai", "Tiistai", "Keskiviikko", "Torstai", "Perjantai", "Lauantai", "Sunnuntai"]
 
 def read_data(filename: str) -> List[Dict]:
-    
-    # Reads a CSV file 
-    
+    """
+    Reads a CSV file with semicolon separators and returns a list of dictionaries.
+    Each dictionary contains:
+      - 'timestamp': datetime object
+      - 'consumption': list of 3 floats (Wh)
+      - 'production': list of 3 floats (Wh)
+    """
     data = []
     with open(filename, "r", encoding="utf-8") as file:
         next(file)  # skip header
@@ -23,10 +27,14 @@ def read_data(filename: str) -> List[Dict]:
     return data
 
 def daily_summary(data: List[Dict]) -> List[Dict]:
-    
-    # Calculates daily totals for consumption and production (in kWh) from the data list.
-    
-    
+    """
+    Calculates daily totals for consumption and production (in kWh) from the data list.
+    Returns a list of dictionaries:
+      - 'weekday': Finnish weekday name
+      - 'date': date object
+      - 'consumption': list of 3 floats (kWh)
+      - 'production': list of 3 floats (kWh)
+    """
     summary = []
     current_day = None
     totals = {"consumption": [0, 0, 0], "production": [0, 0, 0]}
